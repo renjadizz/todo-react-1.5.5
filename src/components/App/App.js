@@ -27,7 +27,7 @@ export default class App extends React.Component {
     this.setState(({ taskItems }) => {
       const taskItemsLeft = taskItems.map((item) => {
         if (item.id === id) {
-          const itemState = item.state === 'completed' ? (item.state = '') : (item.state = 'completed')
+          const itemState = item.state === 'completed' ? (item.state = 'active') : (item.state = 'completed')
           return { ...item, state: itemState }
         }
         return item
@@ -59,7 +59,7 @@ export default class App extends React.Component {
   countActive = (taskItems) => {
     let counter = 0
     taskItems.forEach((el) => {
-      if (el.state !== 'completed') counter++
+      if (el.state === 'active') counter++
     })
     return counter
   }
