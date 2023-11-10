@@ -58,9 +58,8 @@
     "lint-staged": "^15.0.2"
   },
   "lint-staged": {
-    "*.{js}": [
-      "eslint --fix",
-      "prettier --write"
+    "*.js": [
+      "npm run lint:fix"
     ]
   }
 }
