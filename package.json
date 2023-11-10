@@ -20,7 +20,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix"
+    "lint:fix": "eslint ./src --fix",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -53,7 +54,7 @@
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "lint-staged": "^15.0.2"
   },
   "lint-staged": {
