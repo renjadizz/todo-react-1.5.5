@@ -9,7 +9,7 @@ export default class App extends React.Component {
   state = {
     taskItems: [
       { id: 1, state: 'completed', description: 'Completed task', created: 1519211809934 },
-      { id: 2, state: 'editing', description: 'Editing task', created: 1519211810362 },
+      { id: 2, state: 'active', description: 'Editing task', created: 1519211810362 },
       { id: 3, state: 'active', description: 'Active task', created: 1519211811670 },
     ],
     filter: 'all',
@@ -23,16 +23,27 @@ export default class App extends React.Component {
       taskItems: [...taskItems, { id, state, description, created }],
     }))
   }
-  onChangeTaskState = (id) => {
+  changeTaskContent = (id, newState) => {
     this.setState(({ taskItems }) => {
       const taskItemsLeft = taskItems.map((item) => {
         if (item.id === id) {
-          const itemState = item.state === 'completed' ? (item.state = 'active') : (item.state = 'completed')
-          return { ...item, state: itemState }
+          return { ...item, state: newState(item) }
         }
         return item
       })
       return { taskItems: taskItemsLeft }
+    })
+  }
+  onEditTaskItem = (id) => {
+    this.changeTaskContent(id, () => {
+      const itemState = 'editing'
+      return itemState
+    })
+  }
+  onChangeTaskState = (id) => {
+    this.changeTaskContent(id, (item) => {
+      const itemState = item.state === 'completed' ? (item.state = 'active') : (item.state = 'completed')
+      return itemState
     })
   }
   onDeleteTaskItem = (id) => {
@@ -75,6 +86,7 @@ export default class App extends React.Component {
             taskItems={taskItems}
             onChangeTaskState={this.onChangeTaskState}
             onDeleteTaskItem={this.onDeleteTaskItem}
+            onEditTaskItem={this.onEditTaskItem}
           />
           <Footer
             filter={this.state.filter}

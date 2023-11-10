@@ -6,7 +6,7 @@ import './TaskList.css'
 
 export default class TaskList extends React.Component {
   render() {
-    const { taskItems, onChangeTaskState, onDeleteTaskItem } = this.props
+    const { taskItems, onChangeTaskState, onDeleteTaskItem, onEditTaskItem } = this.props
     const taskItem = taskItems.map((item) => {
       const { id, state, ...itemText } = item
       return (
@@ -21,7 +21,7 @@ export default class TaskList extends React.Component {
             <label>
               <Task itemText={itemText} />
             </label>
-            <button className="icon icon-edit"></button>
+            <button className="icon icon-edit" onClick={() => onEditTaskItem(id)}></button>
             <button className="icon icon-destroy" onClick={() => onDeleteTaskItem(id)}></button>
           </div>
           {state === 'editing' ? <input type="text" className="edit" defaultValue="Editing task" /> : null}
