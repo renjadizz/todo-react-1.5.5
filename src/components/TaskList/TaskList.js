@@ -5,8 +5,26 @@ import Task from '../Task/Task'
 import './TaskList.css'
 
 export default class TaskList extends React.Component {
+  state = {
+    value: '',
+  }
+  onEditClick = (text, id) => {
+    this.setState({ value: text })
+    this.props.onEditStateTaskItem(id)
+  }
+  onChange = (e) => {
+    this.setState({
+      value: e.target.value,
+    })
+  }
+  onSubmit = (e) => {
+    e.preventDefault()
+    if (this.state.value !== '') {
+      this.props.onEditTaskItem(e.target.getAttribute('taskid'), this.state.value)
+    }
+  }
   render() {
-    const { taskItems, onChangeTaskState, onDeleteTaskItem, onEditTaskItem } = this.props
+    const { taskItems, onChangeTaskState, onDeleteTaskItem } = this.props
     const taskItem = taskItems.map((item) => {
       const { id, state, ...itemText } = item
       return (
@@ -21,10 +39,14 @@ export default class TaskList extends React.Component {
             <label>
               <Task itemText={itemText} />
             </label>
-            <button className="icon icon-edit" onClick={() => onEditTaskItem(id)}></button>
+            <button className="icon icon-edit" onClick={() => this.onEditClick(itemText.description, id)}></button>
             <button className="icon icon-destroy" onClick={() => onDeleteTaskItem(id)}></button>
           </div>
-          {state === 'editing' ? <input type="text" className="edit" defaultValue="Editing task" /> : null}
+          {state === 'editing' ? (
+            <form onSubmit={this.onSubmit} taskid={id}>
+              <input type="text" className="edit" value={this.state.value} onChange={this.onChange} />
+            </form>
+          ) : null}
         </li>
       )
     })
