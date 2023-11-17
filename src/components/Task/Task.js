@@ -10,7 +10,12 @@ class Task extends React.Component {
     const dateToShow = `created ${formatedDate} ago`
     return (
       <>
-        <span className="description">{itemText.description}</span>
+        <span className="title">{itemText.description}</span>
+        <span className="description">
+          <button className="icon icon-play"></button>
+          <button className="icon icon-pause"></button>
+          <span className="description__timer">12:25</span>
+        </span>
         <span className="created">{dateToShow}</span>
       </>
     )
