@@ -8,19 +8,20 @@ import './App.css'
 export default class App extends React.Component {
   state = {
     taskItems: [
-      { id: 1, state: 'completed', description: 'Completed task', created: 1519211809934 },
-      { id: 2, state: 'active', description: 'Editing task', created: 1519211810362 },
-      { id: 3, state: 'active', description: 'Active task', created: 1519211811670 },
+      { id: 1, state: 'completed', description: 'Completed task', created: 1519211809934, timer: 65 },
+      { id: 2, state: 'active', description: 'Editing task', created: 1519211810362, timer: 44 },
+      { id: 3, state: 'active', description: 'Active task', created: 1519211811670, timer: 99 },
     ],
     filter: 'all',
   }
-  onCreateTask = (taskValue) => {
+  onCreateTask = (taskValue, taskTimer) => {
     const id = this.state.taskItems.length + 1
     const state = 'active'
     const description = taskValue
+    const timer = taskTimer
     const created = Date.now()
     this.setState(({ taskItems }) => ({
-      taskItems: [...taskItems, { id, state, description, created }],
+      taskItems: [...taskItems, { id, state, description, created, timer }],
     }))
   }
   changeTaskContent = (id, newState) => {
