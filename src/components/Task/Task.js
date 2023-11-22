@@ -1,12 +1,12 @@
-import React from 'react'
-import { formatDistanceToNow } from 'date-fns'
+import React from 'react';
+import { formatDistanceToNow } from 'date-fns';
 
-import Timer from '../Timer/Timer'
-import './Task.css'
+import Timer from '../Timer/Timer';
+import './Task.css';
 
 function Task({ itemText }) {
-  const formatedDate = formatDistanceToNow(new Date(itemText.created), { includeSeconds: true })
-  const dateToShow = `created ${formatedDate} ago`
+  const formatedDate = formatDistanceToNow(new Date(itemText.created), { includeSeconds: true });
+  const dateToShow = `created ${formatedDate} ago`;
   return (
     <>
       <span className="title">{itemText.description}</span>
@@ -15,7 +15,7 @@ function Task({ itemText }) {
       </span>
       <span className="created">{dateToShow}</span>
     </>
-  )
+  );
 }
 
-export default Task
+export default Task;

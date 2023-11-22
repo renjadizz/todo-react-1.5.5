@@ -1,41 +1,41 @@
-import { React, useState, useEffect, useRef } from 'react'
+import { React, useState, useEffect, useRef } from 'react';
 
 function Timer(props) {
-  const [timer, setTimer] = useState(props.timer)
-  const [timerOn, setTimerOn] = useState(false)
-  let timerId = useRef(null)
+  const [timer, setTimer] = useState(props.timer);
+  const [timerOn, setTimerOn] = useState(false);
+  let timerId = useRef(null);
 
   useEffect(() => {
     if (timer === 0) {
-      resetTimer()
+      resetTimer();
     }
-  }, [timer])
+  }, [timer]);
 
   useEffect(() => {
     if (timerOn === true) {
-      timerId.current = setInterval(() => setTimer((prev) => prev - 1), 1000)
+      timerId.current = setInterval(() => setTimer((prev) => prev - 1), 1000);
     }
-  }, [timerOn])
+  }, [timerOn]);
 
   const startTimer = () => {
-    setTimer(timer)
-    setTimerOn(true)
-  }
+    setTimer(timer);
+    setTimerOn(true);
+  };
   const stopTimer = () => {
-    clearInterval(timerId.current)
-    setTimerOn(false)
-  }
+    clearInterval(timerId.current);
+    setTimerOn(false);
+  };
   const resetTimer = () => {
-    clearInterval(timerId.current)
-    setTimer(0)
-    setTimerOn(false)
-  }
+    clearInterval(timerId.current);
+    setTimer(0);
+    setTimerOn(false);
+  };
   const addZero = (n) => {
-    return n < 10 ? '0' + n : n
-  }
+    return n < 10 ? '0' + n : n;
+  };
 
-  const min = addZero(Math.floor(timer / 60))
-  const sec = addZero(timer - min * 60)
+  const min = addZero(Math.floor(timer / 60));
+  const sec = addZero(timer - min * 60);
   return (
     <>
       <button className="icon icon-play" onClick={startTimer}></button>
@@ -44,7 +44,7 @@ function Timer(props) {
         {min}:{sec}
       </span>
     </>
-  )
+  );
 }
 
-export default Timer
+export default Timer;

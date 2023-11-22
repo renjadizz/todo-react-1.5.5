@@ -1,26 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import Task from '../Task/Task'
-import './TaskList.css'
+import Task from '../Task/Task';
+import './TaskList.css';
 
 function TaskList({ taskItems, onChangeTaskState, onDeleteTaskItem, onEditStateTaskItem, onEditTaskItem }) {
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState('');
   const onEditClick = (text, id) => {
-    setValue(text)
-    onEditStateTaskItem(id)
-  }
+    setValue(text);
+    onEditStateTaskItem(id);
+  };
   const onChange = (e) => {
-    setValue(e.target.value)
-  }
+    setValue(e.target.value);
+  };
   const onSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (value !== '') {
-      onEditTaskItem(e.target.getAttribute('taskid'), value)
+      onEditTaskItem(e.target.getAttribute('taskid'), value);
     }
-  }
+  };
 
   const taskItem = taskItems.map((item) => {
-    const { id, state, ...itemText } = item
+    const { id, state, ...itemText } = item;
     return (
       <li key={id} className={state}>
         <div className="view">
@@ -42,8 +42,8 @@ function TaskList({ taskItems, onChangeTaskState, onDeleteTaskItem, onEditStateT
           </form>
         ) : null}
       </li>
-    )
-  })
-  return <ul className="todo-list">{taskItem}</ul>
+    );
+  });
+  return <ul className="todo-list">{taskItem}</ul>;
 }
-export default TaskList
+export default TaskList;

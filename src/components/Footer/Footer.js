@@ -1,5 +1,5 @@
-import TasksFilter from '../TasksFilter/TasksFilter'
-import './Footer.css'
+import TasksFilter from '../TasksFilter/TasksFilter';
+import './Footer.css';
 
 const Footer = ({ filter, activeTasks, onFilterChange, onDeleteCompleted }) => {
   return (
@@ -10,7 +10,7 @@ const Footer = ({ filter, activeTasks, onFilterChange, onDeleteCompleted }) => {
         Clear completed
       </button>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

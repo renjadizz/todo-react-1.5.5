@@ -1,31 +1,31 @@
-import { React, useState } from 'react'
-import './NewTaskForm.css'
+import { React, useState } from 'react';
+import './NewTaskForm.css';
 
 function NewTaskForm(props) {
-  const [value, setValue] = useState('')
-  const [min, setMin] = useState('')
-  const [sec, setSec] = useState('')
+  const [value, setValue] = useState('');
+  const [min, setMin] = useState('');
+  const [sec, setSec] = useState('');
   const onChange = (e) => {
-    setValue(e.target.value)
-  }
+    setValue(e.target.value);
+  };
   const onChangeMin = (e) => {
-    setMin(e.target.value)
-  }
+    setMin(e.target.value);
+  };
   const onChangeSec = (e) => {
-    setSec(e.target.value)
-  }
+    setSec(e.target.value);
+  };
   const onSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (value !== '') {
       if (min !== '' || sec !== '') {
-        const timer = Number(min) * 60 + Number(sec)
-        props.onCreateTask(value, timer)
-        setValue('')
-        setMin('')
-        setSec('')
+        const timer = Number(min) * 60 + Number(sec);
+        props.onCreateTask(value, timer);
+        setValue('');
+        setMin('');
+        setSec('');
       }
     }
-  }
+  };
 
   return (
     <form className="new-todo-form" onSubmit={onSubmit}>
@@ -34,6 +34,6 @@ function NewTaskForm(props) {
       <input className="new-todo-form__timer" placeholder="Sec" autoFocus value={sec} onChange={onChangeSec} />
       <input type="submit" hidden />
     </form>
-  )
+  );
 }
-export default NewTaskForm
+export default NewTaskForm;
